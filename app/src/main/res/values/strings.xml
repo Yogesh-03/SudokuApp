@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SudokuGame</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_id">ca-app-pub-2668944535430183~7423520838</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2668944535430183/5523091702</string>
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sudoku Title Style -->
+    <style name="SudokuName" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <!--<item name="android:layout_marginStart">20dp</item>-->
+    </style>
+
+    <!-- New Game Button Style STARTS -->
+    <style name="GameStartButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+    <!-- New Game Button style ENDS -->
+
+    <!-- New Game Dialog Fragment style STARTS -->
+    <style name="NewGameDialogCardView" parent="CardView">
+        <item name="cardCornerRadius">3dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+    <!-- New Game Dialog Fragment style ENDS -->
+
+
+    <style name="NewGameDialogCardViewText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+    </style>
+
+    <style name="StatsCatButton" parent="TextAppearance.AppCompat">
+        <item name="android:backgroundTint">@color/gray</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="layout_goneMarginRight">5dp</item>
+    </style>
+
+    <style name="StatsCardView" parent="CardView">
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="cardCornerRadius">5dp</item>
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+</resources>
