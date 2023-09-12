@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import com.example.sudokugame.R
 import com.example.sudokugame.SudokuPlayActivity
@@ -16,12 +17,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NewGameDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class NewGameDialogFragment : BottomSheetDialogFragment() {
+
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -32,6 +31,7 @@ class NewGameDialogFragment : BottomSheetDialogFragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -41,8 +41,42 @@ class NewGameDialogFragment : BottomSheetDialogFragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_new_game_dialog, container, false)
         val easyNewGame = view.findViewById<CardView>(R.id.easyNewGame)
+        //progerssBar = view.findViewById(R.id.progressBar)
+        //progerssBar.visibility = View.INVISIBLE
         easyNewGame.setOnClickListener {
+            //progerssBar.visibility = View.VISIBLE
+            //dialog?.window?.attributes?.windowAnimations  = R.drawable.slide_in
             val intent = Intent(activity, SudokuPlayActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("easy", "Easy")
+            intent.putExtras(bundle)
+            startActivity(intent)
+            //progerssBar.visibility = View.INVISIBLE
+        }
+        val mediumNewGame = view.findViewById<CardView>(R.id.mediumNewGame)
+        mediumNewGame.setOnClickListener {
+            val intent = Intent(activity, SudokuPlayActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("medium", "Medium")
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+
+        val hardNewGame = view.findViewById<CardView>(R.id.hardNewGame)
+        hardNewGame.setOnClickListener {
+            val intent = Intent(activity, SudokuPlayActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("hard", "Hard")
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+
+        val expertNewGame = view.findViewById<CardView>(R.id.expertNewGame)
+        expertNewGame.setOnClickListener {
+            val intent = Intent(activity, SudokuPlayActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("expert", "Expert")
+            intent.putExtras(bundle)
             startActivity(intent)
         }
         return view

@@ -21,6 +21,16 @@ class Generator private constructor(difficultyLevel: DifficultyLevel){
         //println()
     }
 
+    fun sudokuList():MutableList<Int>{
+         val cells:MutableList<Int> = mutableListOf()
+        for (i in 0 until Constants().GRID_SIZE) {
+            for (j in 0 until Constants().GRID_SIZE) {
+                cells.add(grid[i][j])
+            }
+        }
+        return cells
+    }
+
     private fun fillGrid() {
         fillDiagonalBoxes()
         fillRemaining(0, Constants().GRID_SIZE_SQUARE_ROOT)

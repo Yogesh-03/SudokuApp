@@ -82,3 +82,4 @@ class Solver {
 
     private fun findBoxEnd(index: Int) = index + Constants().BOX_SIZE - 1
 }
+

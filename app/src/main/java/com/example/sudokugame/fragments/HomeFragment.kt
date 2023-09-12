@@ -16,6 +16,9 @@ import com.example.sudokugame.R
 import com.example.sudokugame.databinding.ActivityMainBinding
 import com.example.sudokugame.databinding.ActivitySudokuPlayBinding
 import com.example.sudokugame.fragments.dialog.NewGameDialogFragment
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,12 +54,21 @@ class HomeFragment : Fragment() {
         val newGameButton = view.findViewById<Button>(R.id.newGameButton)
         val continueGameButton = view.findViewById<Button>(R.id.continueGameButton)
         val sudokuGame = view.findViewById<TextView>(R.id.sudokuClassic)
+        val dailyChallengeDate = view.findViewById<TextView>(R.id.dailyChallengeDate)
+
+        //Settings current date in Daily Challenges date view
+        val calendar: Calendar = Calendar.getInstance()
+        val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
+        val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
+        val monthInWords: String = monthFormat.format(calendar.time)
+        val currentDate: String = "$monthInWords-$day"
+        dailyChallengeDate.text = currentDate
 
         //Setting width of New Game and Continue Button to 2/3-10 of screen width
         newGameButton.width = 2*(Resources.getSystem().displayMetrics.widthPixels)/3-10
         continueGameButton.width = 2*(Resources.getSystem().displayMetrics.widthPixels)/3-10
 
-        //Setting color of sudoku classic to blue
+        //Setting color of sudoku "classic" to blue
         val spannableString:SpannableString = SpannableString("Sudoku Classic")
         spannableString.setSpan(ForegroundColorSpan(resources.getColor(R.color.blue)),7,14, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         sudokuGame.text = spannableString
@@ -67,15 +79,14 @@ class HomeFragment : Fragment() {
             newGameButton.alpha = 0.9F
 
             //Setting button enables = false for 800ms to prevent multiple clicks
-            Handler().postDelayed(object : Runnable {
-                override fun run() {
-                    newGameButton.isEnabled = true
-                    newGameButton.alpha = 1F
-                }
+            Handler().postDelayed({
+                newGameButton.isEnabled = true
+                newGameButton.alpha = 1F
             },800)
-
+            //Opening the Dialog
             val newGameDialogFragment: NewGameDialogFragment = NewGameDialogFragment()
             newGameDialogFragment.show(childFragmentManager, newGameDialogFragment.tag)
+
         }
         return view
     }

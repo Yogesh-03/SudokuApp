@@ -41,14 +41,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_profile, container, false)
-        val settings = view.findViewById<ImageButton>(R.id.profileSettings)
-        val fragContainer = view.findViewById<FrameLayout>(R.id.profileFragContainer)
-        settings.setOnClickListener {
-           val intent = Intent(activity, SettingsActivity::class.java)
-            startActivity(intent)
-        }
 
-        childFragmentManager.beginTransaction().replace(R.id.profileFragContainer, StatsFragment()).commit()
+
+
+
         return view;
     }
 

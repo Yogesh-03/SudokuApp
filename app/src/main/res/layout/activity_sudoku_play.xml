@@ -74,11 +74,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/difficultyHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Easy"
+        android:text="Difficulty Heading"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
@@ -199,6 +199,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/erase"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -318,7 +319,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/oneButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -353,7 +355,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/twoButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -388,7 +391,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/threeButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -423,7 +427,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/fourButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -458,7 +463,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/fiveButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -493,7 +499,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/sixButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -528,7 +535,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/sevenButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -563,7 +571,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/eightButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"
@@ -598,7 +607,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nineButtonCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:clickable="true"
             android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:layout_marginBottom="8dp"

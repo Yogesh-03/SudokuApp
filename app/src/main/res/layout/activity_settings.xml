@@ -7,38 +7,30 @@
     android:background="@color/light_gray"
     tools:context=".SettingsActivity">
 
-    <ImageButton
-        android:id="@+id/backToProfileFromSettings"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:paddingStart="6dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:background="@color/light_gray"
         android:layout_height="wrap_content"
-        android:layout_marginStart="07dp"
-        android:layout_marginTop="16dp"
-        android:text="Settings"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/backToProfileFromSettings"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/materialToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            app:title="Settings" />
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -123,6 +115,7 @@
                             android:id="@+id/settingsTimerSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:theme="@style/SCBSwitch"
                             android:layout_marginEnd="10dp"
                             android:checked="true" />
 
@@ -159,32 +152,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
+                            android:theme="@style/SCBSwitch"
                             android:checked="true" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginVertical="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Themes" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/baseline_person_3_24" />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -270,6 +240,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
+                            android:theme="@style/SCBSwitch"
                             android:checked="true" />
 
                     </LinearLayout>
@@ -306,6 +277,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
+                            android:theme="@style/SCBSwitch"
                             android:checked="true" />
 
                     </LinearLayout>
@@ -342,6 +314,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
+                            android:theme="@style/SCBSwitch"
                             android:checked="true" />
 
                     </LinearLayout>
@@ -378,6 +351,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
+                            android:theme="@style/SCBSwitch"
                             android:checked="true" />
 
                     </LinearLayout>

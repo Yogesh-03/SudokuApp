@@ -1,23 +1,41 @@
 package com.example.sudokugame.sudoku
 
+import android.content.SharedPreferences
+import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import com.example.sudokugame.sharedpreferences.UserSettings
+import com.example.sudokugame.sudokugenerator.DifficultyLevel
+import com.example.sudokugame.sudokugenerator.Generator
+import com.example.sudokugame.sudokugenerator.Solver
 
 class SudokuGame {
     var selectedCellLiveData = MutableLiveData<Pair<Int,Int>>()
     val cellsLiveData = MutableLiveData<List<Cell>>()
     val isTakingNotesLiveData = MutableLiveData<Boolean>()
     val highlightedKeysLiveData = MutableLiveData<Set<Int>>()
-    val fontLiveSize = MutableLiveData<Float>()
+    val currentDifficultyLevel = MutableLiveData<String>()
+
+
+
 
     private var selectedRow = -1;
     private var selectedCol = -1;
     private var isTakingNotes = false
+    var cellList:MutableList<Int> = Generator.Builder().setLevel(DifficultyLevel.EASY).build().sudokuList()
 
-    private val board: Board
+     val board: Board
     init {
-        val cells = List(9*9){ i-> Cell(i/9,i%9, i%9)}
+        val cells = List(9*9){ i-> Cell(i/9,i%9, cellList[i])}
         board = Board(9,cells)
-
+        for(i in 0 until cellList.size){
+            if(cellList[i]!=0){
+                Log.d("index", i.toString())
+                cells[i].isStartingCell = true
+                cells[i].canValueChanged = false
+            }
+        }
         selectedCellLiveData.postValue(Pair(selectedRow, selectedCol))
         cellsLiveData.postValue(board.cells)
         isTakingNotesLiveData.postValue(isTakingNotes)
@@ -43,7 +61,7 @@ class SudokuGame {
 
     fun updateSelectedCell(row:Int, col:Int){
         val cell = board.getCell(row, col)
-        if (!cell.isStartingCell) {
+        if (!cell.canValueChanged || !cell.isStartingCell) {
             selectedRow = row
             selectedCol = col
             selectedCellLiveData.postValue(Pair(row, col))
@@ -65,8 +83,15 @@ class SudokuGame {
         }
         highlightedKeysLiveData.postValue(curNotes)
     }
-    fun settingFontLiveSize(fontSize:Float){
-        fontLiveSize.postValue(fontSize)
-    }
 
+    fun delete() {
+        val cell = board.getCell(selectedRow, selectedCol)
+        if (isTakingNotes) {
+            cell.notes.clear()
+            highlightedKeysLiveData.postValue(setOf())
+        } else {
+            if(!cell.isStartingCell) cell.value = 0
+        }
+        cellsLiveData.postValue(board.cells)
+    }
 }

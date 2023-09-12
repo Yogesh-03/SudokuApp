@@ -9,6 +9,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -19,70 +20,75 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/easyNewGame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="0dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="10dp"
             style="@style/NewGameDialogCardView"
-            android:layout_marginTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:elevation="0dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp">
+
             <TextView
+                style="@style/NewGameDialogCardViewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Easy"
-                style="@style/NewGameDialogCardViewText"/>
-
+                android:text="Easy" />
 
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/mediumNewGame"
+            style="@style/NewGameDialogCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            app:cardElevation="0dp"
             app:cardCornerRadius="10dp"
-            style="@style/NewGameDialogCardView">
+            app:cardElevation="0dp">
+
             <TextView
+                style="@style/NewGameDialogCardViewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium"
-                style="@style/NewGameDialogCardViewText"/>
+                android:text="Medium" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/hardNewGame"
+            style="@style/NewGameDialogCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            app:cardElevation="0dp"
             app:cardCornerRadius="10dp"
-            style="@style/NewGameDialogCardView">
+            app:cardElevation="0dp">
+
             <TextView
+                style="@style/NewGameDialogCardViewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hard"
-                style="@style/NewGameDialogCardViewText"/>
-
+                android:text="Hard" />
 
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/expertNewGame"
+            style="@style/NewGameDialogCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            app:cardElevation="0dp"
             app:cardCornerRadius="10dp"
-            style="@style/NewGameDialogCardView">
+            app:cardElevation="0dp">
+
             <TextView
+                style="@style/NewGameDialogCardViewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expert"
-                style="@style/NewGameDialogCardViewText"/>
-
+                android:text="Expert" />
 
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

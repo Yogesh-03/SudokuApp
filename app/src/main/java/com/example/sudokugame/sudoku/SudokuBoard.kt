@@ -73,7 +73,7 @@ class SudokuBoard(context:Context,  attributeSet: AttributeSet): View(context, a
     // TextPaint
     private val textPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.BLACK
+        color = Color.BLUE
     }
 
     // Starting Cell Text Paint
@@ -256,6 +256,17 @@ class SudokuBoard(context:Context,  attributeSet: AttributeSet): View(context, a
         selectedRow = row
         selectedCol = col
         invalidate()
+    }
+
+    fun updateSameNumberCellUI(row:Int, col: Int){
+        if(selectedRow>= 0 && selectedCol>=0) {
+            for (i in SudokuGame().cellList) {
+                if (i == SudokuGame().board.getCell(row, col).value) {
+                    selectedRow = row
+                    selectedCol = col
+                }
+            }
+        }
     }
 
     fun updateCells(cells: List<Cell>) {

@@ -25,22 +25,22 @@ class ThemeFontPopUpActivity : AppCompatActivity() {
                 editor.putFloat(themeAndFont.smallTextPreference, themeAndFont.getCustomSmallText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().smallTextPreference, themeAndFont.getCustomSmallText()))
-                SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
+                //SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 18F){
                 editor.putFloat(themeAndFont.mediumTextPreference, themeAndFont.getCustomMediumText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().mediumTextPreference, themeAndFont.getCustomMediumText()))
-                SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
+                //SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 20F){
                 editor.putFloat(themeAndFont.largeTextPreference, themeAndFont.getCustomLargeText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().largeTextPreference, themeAndFont.getCustomLargeText()))
-                SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
+               // SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 22F){
                 editor.putFloat(themeAndFont.extraLargeTextPreference, themeAndFont.getCustomExtraLargeText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().extraLargeTextPreference, themeAndFont.getCustomExtraLargeText()))
-                SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
+                //SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             }
 
 

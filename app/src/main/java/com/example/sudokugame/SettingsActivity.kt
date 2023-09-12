@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
+import com.example.sudokugame.databinding.ActivitySettingsBinding
 import com.example.sudokugame.fragments.ProfileFragment
 import com.example.sudokugame.sharedpreferences.UserSettings
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsActivity : AppCompatActivity() {
+    private lateinit var binding:ActivitySettingsBinding
     private lateinit var settingsTimerSwitch:SwitchMaterial
     private lateinit var settingsScreenTimeoutSwitch:SwitchMaterial
     private lateinit var settingsHintsSwitch:SwitchMaterial
@@ -23,10 +25,10 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //Finding View's by IDs
-        val backToProfile = findViewById<ImageButton>(R.id.backToProfileFromSettings)
         settingsTimerSwitch = findViewById(R.id.settingsTimerSwitch)
         settingsScreenTimeoutSwitch = findViewById(R.id.settingsScreenTimeoutSwitch)
         settingsHintsSwitch = findViewById(R.id.settingsHintsSwitch)
@@ -42,11 +44,10 @@ class SettingsActivity : AppCompatActivity() {
         //Getting Clicked on Material Switches
         initSettingsSwitchListener()
 
-        //Getting Clicked on Back Button
-        backToProfile.setOnClickListener {
-            val intent = Intent(this, supportFragmentManager.beginTransaction().replace(R.id.fragContainerMain, ProfileFragment()).commit()::class.java)
-            startActivity(intent)
+        binding.materialToolBar.setNavigationOnClickListener{
+            onBackPressedDispatcher.onBackPressed()
         }
+
     }
 
     private fun initSettingsSwitchListener() {
