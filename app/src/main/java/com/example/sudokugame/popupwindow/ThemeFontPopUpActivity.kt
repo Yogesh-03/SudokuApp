@@ -21,22 +21,27 @@ class ThemeFontPopUpActivity : AppCompatActivity() {
         val themeAndFont = ThemeAndFont()
         sudokuFontSize.addOnChangeListener { slider, value, fromUser ->
             val editor:SharedPreferences.Editor = getSharedPreferences(ThemeAndFont().themeFontPreferences, MODE_PRIVATE).edit()
+            SudokuGame.textSize.postValue(value)
             if(value == 16F){
+                SudokuGame.textSize.postValue(value)
                 editor.putFloat(themeAndFont.smallTextPreference, themeAndFont.getCustomSmallText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().smallTextPreference, themeAndFont.getCustomSmallText()))
                 //SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 18F){
+                SudokuGame.textSize.postValue(value)
                 editor.putFloat(themeAndFont.mediumTextPreference, themeAndFont.getCustomMediumText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().mediumTextPreference, themeAndFont.getCustomMediumText()))
                 //SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 20F){
+                SudokuGame.textSize.postValue(value)
                 editor.putFloat(themeAndFont.largeTextPreference, themeAndFont.getCustomLargeText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().largeTextPreference, themeAndFont.getCustomLargeText()))
                // SudokuGame().settingFontLiveSize(themeAndFont.getCurrentTextSize())
             } else if(value == 22F){
+                SudokuGame.textSize.postValue(value)
                 editor.putFloat(themeAndFont.extraLargeTextPreference, themeAndFont.getCustomExtraLargeText())
                 editor.apply()
                 ThemeAndFont().setCurrentTextSize(sharedPreferences.getFloat(ThemeAndFont().extraLargeTextPreference, themeAndFont.getCustomExtraLargeText()))

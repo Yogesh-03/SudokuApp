@@ -28,11 +28,21 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
-            <TextView
-                style="@style/NewGameDialogCardViewText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Easy" />
+            <LinearLayout
+                android:id="@+id/easyNewGameLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true">
+                <TextView
+                    style="@style/NewGameDialogCardViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy" />
+
+            </LinearLayout>
+
+
 
 
         </androidx.cardview.widget.CardView>
@@ -46,11 +56,19 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
-            <TextView
-                style="@style/NewGameDialogCardViewText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medium" />
+            <LinearLayout
+                android:id="@+id/mediumNewGameLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true">
+                <TextView
+                    style="@style/NewGameDialogCardViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium" />
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -62,11 +80,20 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
-            <TextView
-                style="@style/NewGameDialogCardViewText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hard" />
+            <LinearLayout
+                android:id="@+id/hardNewGameLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true">
+                <TextView
+                    style="@style/NewGameDialogCardViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hard" />
+            </LinearLayout>
+
+
 
 
         </androidx.cardview.widget.CardView>
@@ -80,11 +107,20 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
-            <TextView
-                style="@style/NewGameDialogCardViewText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Expert" />
+            <LinearLayout
+                android:id="@+id/expertNewGameLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true">
+                <TextView
+                    style="@style/NewGameDialogCardViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expert" />
+            </LinearLayout>
+
+
 
 
         </androidx.cardview.widget.CardView>

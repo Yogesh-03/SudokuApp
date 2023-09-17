@@ -4,13 +4,14 @@ import android.app.Application
 import kotlin.properties.Delegates
 
 class UserSettings: Application() {
-    val PREFERENCES:String = "preferences"
-    val TIMER:String = "timer"
-    val SCREEN_TIMEOUT:String = "screenTimeout"
-    val HINTS:String = "hints"
-    val HIGHLIGHT_SAME_NUMBERS:String = "highlightSameNumbers"
-    val HIGHLIGHT_USED_NUMBERS:String = "highlightUsedNumbers"
-    val HIGHLIGHT_WRONG_INPUT:String = "highlightWrongInput"
+    internal val PREFERENCES:String = "preferences"
+    internal val TIMER:String = "timer"
+    internal val SCREEN_TIMEOUT:String = "screenTimeout"
+    internal val HINTS:String = "hints"
+    internal val HIGHLIGHT_SAME_NUMBERS:String = "highlightSameNumbers"
+    internal val HIGHLIGHT_USED_NUMBERS:String = "highlightUsedNumbers"
+    internal val HIGHLIGHT_WRONG_INPUT:String = "highlightWrongInput"
+    internal val AUDIO_EFFECT:String = "audioEffect"
 
     //Getter and Setter for Timer
     private var customTimer:Boolean = true
@@ -71,5 +72,15 @@ class UserSettings: Application() {
 
     fun setCustomHighlightWrongInput(value:Boolean){
         customHighlightWrongInput = value
+    }
+
+    //Getter and Setter for Audio Effect
+    private var customAudioEffect:Boolean = true
+    fun getCustomAudioEffect():Boolean{
+        return customAudioEffect
+    }
+
+    fun setCustomAudioEffect(value:Boolean){
+        this.customAudioEffect = value
     }
 }

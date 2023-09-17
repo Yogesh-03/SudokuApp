@@ -1,40 +1,23 @@
 package com.example.sudokugame
 
-import android.app.Application
-import android.content.Intent
+
+import android.app.Dialog
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.Button
+import android.widget.Toast
 import com.example.sudokugame.databinding.ActivitySettingsBinding
-import com.example.sudokugame.fragments.ProfileFragment
 import com.example.sudokugame.sharedpreferences.UserSettings
-import com.google.android.material.materialswitch.MaterialSwitch
-import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding:ActivitySettingsBinding
-    private lateinit var settingsTimerSwitch:SwitchMaterial
-    private lateinit var settingsScreenTimeoutSwitch:SwitchMaterial
-    private lateinit var settingsHintsSwitch:SwitchMaterial
-    private lateinit var settingsHighlightSameNumbersSwitch:SwitchMaterial
-    private lateinit var settingsHighlightUsedNumbersSwitch:SwitchMaterial
-    private lateinit var settingsHighlightWrongInputSwitch:SwitchMaterial
     private lateinit var settings:UserSettings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //Finding View's by IDs
-        settingsTimerSwitch = findViewById(R.id.settingsTimerSwitch)
-        settingsScreenTimeoutSwitch = findViewById(R.id.settingsScreenTimeoutSwitch)
-        settingsHintsSwitch = findViewById(R.id.settingsHintsSwitch)
-        settingsHighlightSameNumbersSwitch = findViewById(R.id.settingsHighlightSameNumbersSwitch)
-        settingsHighlightUsedNumbersSwitch = findViewById(R.id.settingsHighlightUsedNumbersSwitch)
-        settingsHighlightWrongInputSwitch = findViewById(R.id.settingsHighlightWrongInputSwitch)
 
         settings= UserSettings()
 
@@ -44,6 +27,19 @@ class SettingsActivity : AppCompatActivity() {
         //Getting Clicked on Material Switches
         initSettingsSwitchListener()
 
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_feedback)
+        val sendFeedback: Button = dialog.findViewById(R.id.feedbackSendButton)
+        val cancelFeedback:Button = dialog.findViewById(R.id.feedbackCancelButton)
+
+        binding.settingsFeedbackLinearLayout.setOnClickListener { dialog.show() }
+
+        sendFeedback.setOnClickListener {
+            Toast.makeText(this, "Feedback Sent", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        cancelFeedback.setOnClickListener { dialog.dismiss() }
+
         binding.materialToolBar.setNavigationOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }
@@ -52,20 +48,21 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun initSettingsSwitchListener() {
 
+
         //Getting Clicked on  Timer Switch
-        settingsTimerSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        binding.settingsTimerSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomTimer(true)
             } else {
                 settings.setCustomTimer(false)
             }
             val editor:SharedPreferences.Editor  = getSharedPreferences(UserSettings().PREFERENCES, MODE_PRIVATE).edit()
-            editor.putBoolean(settings.TIMER, settings.getCustomTimer())
+            editor.putBoolean(settings.TIMER, checked)
             editor.apply()
         }
 
         //Getting Clicked on Screen Timeout Switch
-        settingsScreenTimeoutSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        binding.settingsScreenTimeoutSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomScreenTimeout(true)
             } else {
@@ -76,8 +73,21 @@ class SettingsActivity : AppCompatActivity() {
             editor.apply()
         }
 
-        //Getting Clikced on HInts Switch
-        settingsHintsSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        //Getting clicked on Audio Effect Switch
+        binding.settingsScreenAudioEffectSwitch.setOnCheckedChangeListener { _, b ->
+            if (b){
+                settings.setCustomAudioEffect(true)
+            } else {
+                settings.setCustomAudioEffect(false)
+            }
+
+            val editor:SharedPreferences.Editor  = getSharedPreferences(UserSettings().PREFERENCES, MODE_PRIVATE).edit()
+            editor.putBoolean(settings.AUDIO_EFFECT, settings.getCustomAudioEffect())
+            editor.apply()
+        }
+
+        //Getting Clicked on HInts Switch
+        binding.settingsHintsSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomHints(true)
             } else {
@@ -89,7 +99,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         //Getting Clicked on Highlight Same Numbers Switch
-        settingsHighlightSameNumbersSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        binding.settingsHighlightSameNumbersSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomHighlightSameNumbers(true)
             } else {
@@ -98,10 +108,11 @@ class SettingsActivity : AppCompatActivity() {
             val editor:SharedPreferences.Editor  = getSharedPreferences(UserSettings().PREFERENCES, MODE_PRIVATE).edit()
             editor.putBoolean(settings.HIGHLIGHT_SAME_NUMBERS, settings.getCustomHighlightSameNumbers())
             editor.apply()
+
         }
 
         //Getting clicked on Highlight Used Numbers Switch
-        settingsHighlightUsedNumbersSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        binding.settingsHighlightUsedNumbersSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomHighlightUsedNumbers(true)
             } else {
@@ -113,7 +124,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         //Getting Clicked on Highlight wrong Input Switch
-        settingsHighlightWrongInputSwitch.setOnCheckedChangeListener { compoundButton, checked ->
+        binding.settingsHighlightWrongInputSwitch.setOnCheckedChangeListener { _, checked ->
             if (checked){
                 settings.setCustomHighlightWrongInput(true)
             } else {
@@ -127,23 +138,20 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun loadUserSettingsSharedPreferences() {
         val sharedPreferences:SharedPreferences = getSharedPreferences(UserSettings().PREFERENCES, MODE_PRIVATE)
-        settings.setCustomTimer(sharedPreferences.getBoolean(settings.TIMER, settings.getCustomTimer()))
-        settingsTimerSwitch.isChecked = settings.getCustomTimer()
 
-        settings.setCustomScreenTimeout(sharedPreferences.getBoolean(settings.SCREEN_TIMEOUT,settings.getCustomScreenTimeout()))
-        settingsScreenTimeoutSwitch.isChecked = settings.getCustomScreenTimeout()
+        binding.settingsTimerSwitch.isChecked = sharedPreferences.getBoolean(settings.TIMER, settings.getCustomTimer())
 
-        settings.setCustomHints(sharedPreferences.getBoolean(settings.HINTS, settings.getCustomHints()))
-        settingsHintsSwitch.isChecked = settings.getCustomHints()
+        binding.settingsScreenTimeoutSwitch.isChecked = sharedPreferences.getBoolean(settings.SCREEN_TIMEOUT,settings.getCustomScreenTimeout())
 
-        settings.setCustomHighlightSameNumbers(sharedPreferences.getBoolean(settings.HIGHLIGHT_SAME_NUMBERS, settings.getCustomHighlightSameNumbers()))
-        settingsHighlightSameNumbersSwitch.isChecked = settings.getCustomHighlightSameNumbers()
+        binding.settingsScreenAudioEffectSwitch.isChecked = sharedPreferences.getBoolean(settings.AUDIO_EFFECT, settings.getCustomAudioEffect())
 
-        settings.setCustomHighlightUsedNumbers(sharedPreferences.getBoolean(settings.HIGHLIGHT_USED_NUMBERS, settings.getCustomHighlightUsedNumbers()))
-        settingsHighlightUsedNumbersSwitch.isChecked = settings.getCustomHighlightUsedNumbers()
+        binding.settingsHintsSwitch.isChecked = sharedPreferences.getBoolean(settings.HINTS, settings.getCustomHints())
 
-        settings.setCustomHighlightWrongInput(sharedPreferences.getBoolean(settings.HIGHLIGHT_WRONG_INPUT, settings.getCustomHighlightWrongInput()))
-        settingsHighlightWrongInputSwitch.isChecked = settings.getCustomHighlightWrongInput()
+        binding.settingsHighlightSameNumbersSwitch.isChecked = sharedPreferences.getBoolean(settings.HIGHLIGHT_SAME_NUMBERS, settings.getCustomHighlightSameNumbers())
+
+        binding.settingsHighlightUsedNumbersSwitch.isChecked = sharedPreferences.getBoolean(settings.HIGHLIGHT_USED_NUMBERS, settings.getCustomHighlightUsedNumbers())
+
+        binding.settingsHighlightWrongInputSwitch.isChecked = sharedPreferences.getBoolean(settings.HIGHLIGHT_WRONG_INPUT, settings.getCustomHighlightWrongInput())
 
     }
 }

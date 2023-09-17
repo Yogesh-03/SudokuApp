@@ -1,7 +1,9 @@
 package com.example.sudokugame.sudokugenerator
 
+import android.util.Log
+
 class Solver {
-    lateinit var grid: Array<IntArray>
+    private lateinit var grid: Array<IntArray>
 
     fun solvable(grid: Array<IntArray>) : Boolean {
         this.grid = grid.copy()
@@ -30,9 +32,55 @@ class Solver {
         return true
     }
 
+    fun solveSudoku(board: Array<IntArray>): Boolean {
+        for (row in 0 until 9) {
+            for (col in 0 until 9) {
+                if (board[row][col] == 0) {
+                    for (num in 1..9) {
+                        if (isSafe(board, row, col, num)) {
+                            board[row][col] = num
+
+                            if (solveSudoku(board)) {
+                                return true
+                            }
+
+                            // If the current placement doesn't lead to a solution, backtrack
+                            board[row][col] = 0
+                        }
+                    }
+                    // If no number can be placed in this cell, the puzzle is unsolvable
+                    return false
+                }
+            }
+        }
+        // If all cells are filled, the puzzle is solved
+        return true
+    }
+
+    fun printBoard(board: Array<IntArray>) {
+        for (row in 0 until 9) {
+            for (col in 0 until 9) {
+                Log.d("Board", "${board[row][col]}" + " ")
+                //print(board[row][col].toString() + " ")
+            }
+            println()
+        }
+    }
+
+    fun returnBoard(board:Array<IntArray>):MutableList<Int>{
+        val list = mutableListOf<Int>()
+        for (i in 0 until Constants().GRID_SIZE) {
+            for (j in 0 until Constants().GRID_SIZE) {
+                list.add(board[i][j])
+            }
+        }
+        return list
+    }
+
+
     private fun getAvailableDigits(row: Int, column: Int) : Iterable<Int> {
         val digitsRange = Constants().MIN_DIGIT_VALUE..Constants().MAX_DIGIT_VALUE
-        var availableDigits = mutableSetOf<Int>()
+        val availableDigits = mutableSetOf<Int>()
         availableDigits.addAll(digitsRange)
 
         truncateByDigitsAlreadyUsedInRow(availableDigits, row)
@@ -81,5 +129,39 @@ class Solver {
     private fun findBoxStart(index: Int) = index - index % Constants().GRID_SIZE_SQUARE_ROOT
 
     private fun findBoxEnd(index: Int) = index + Constants().BOX_SIZE - 1
+
+    private fun isSafe(board: Array<IntArray>, row: Int, col: Int, num: Int): Boolean {
+        // Check if num is not already present in the current row, current column, and current 3x3 subgrid
+        return !isInRow(board, row, num) && !isInCol(board, col, num) && !isInBox(board, row - row % 3, col - col % 3, num)
+    }
+
+    private fun isInRow(board: Array<IntArray>, row: Int, num: Int): Boolean {
+        for (col in 0 until 9) {
+            if (board[row][col] == num) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun isInCol(board: Array<IntArray>, col: Int, num: Int): Boolean {
+        for (row in 0 until 9) {
+            if (board[row][col] == num) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun isInBox(board: Array<IntArray>, startRow: Int, startCol: Int, num: Int): Boolean {
+        for (row in 0 until 3) {
+            for (col in 0 until 3) {
+                if (board[row + startRow][col + startCol] == num) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 
