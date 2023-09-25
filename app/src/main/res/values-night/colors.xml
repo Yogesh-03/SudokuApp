@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="icons_color">#D3D3D3</color>
+    <color name="app_bar">#0e0e11</color>
+    <color name="window">#0e0e11</color>
+    <color name="card_view">#201F20</color>
+    <color name="heading_text">#CCCCCC</color>
+    <color name="purple_200">#4169E1</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#4169E1</color>
+    <color name="gray">#D3D3D3</color>
+    <color name="light_blue">#ADD8E6</color>
+    <color name="light_gray" tools:ignore="MissingDefaultResource">#F1F1F1</color>
+    <color name="orange">#FFA500</color>
+    <color name="dialogColor">#201F20</color>
+    <color name="bottom_sheet">#201F20</color>
+    <color name="pencil_icon_color">#0f2d85</color>
+
+    <!--    Sudoku Board Paints   -->
+    <color name="thick_line_paint">#000000</color>
+    <color name="border_paint">#000000</color>
+    <color name="thin_line_paint">#1C1E27</color>
+    <color name="wrong_input_paint">#ffcccb</color>
+    <color name="selected_cell_paint">#3C4F7B</color>
+    <color name="conflicting_cell_paint">#141720</color>
+    <color name="natural_cell_paint">#242834</color>
+    <color name="text_paint">#4B65DF</color>
+    <color name="wrong_text_paint">#dd090b</color>
+    <color name="starting_cell_text_paint">#FFFFFF</color>
+    <color name="note_text_paint">#b6b4b6</color>
+</resources>

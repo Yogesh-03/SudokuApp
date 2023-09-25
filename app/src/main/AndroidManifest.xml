@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="com.google.android.gmd.permission.AD_ID" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,20 +14,27 @@
         android:theme="@style/Theme.SudokuGame"
         tools:targetApi="31">
         <activity
-            android:name=".ThemeFontPopUpActivity"
+            android:name=".ui.HowToPlayActivity"
             android:exported="false" />
         <activity
-            android:name=".SudokuPlayActivity"
-            android:exported="false"
-            />
+            android:name=".ui.AboutActivity"
+            android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".popupwindow.ThemeFontPopUpActivity"
             android:exported="false"
-             />
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.SudokuPlayActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MainActivity"
             android:exported="true"
-           >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

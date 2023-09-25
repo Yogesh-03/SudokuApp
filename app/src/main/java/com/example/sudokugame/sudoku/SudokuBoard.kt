@@ -3,13 +3,11 @@ package com.example.sudokugame.sudoku
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sudokugame.R
-import com.example.sudokugame.sharedpreferences.ThemeAndFont
 import com.example.sudokugame.sharedpreferences.UserSettings
 import kotlin.math.min
 
@@ -35,76 +33,71 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
     // Thick lines separating boxes
     private val thickLinePaint = Paint().apply {
         style = Paint.Style.STROKE
-        color = Color.BLACK
+        color = ContextCompat.getColor(context, R.color.thick_line_paint)
         strokeWidth = 4F
     }
 
+    //Boarder Lines Paint
     private val borderPaint = Paint().apply {
         style = Paint.Style.STROKE
-        color = Color.BLACK
+        color = ContextCompat.getColor(context, R.color.border_paint)
         strokeWidth = 8F
     }
 
     // Thin lines separating cells
     private val thinLinePaint = Paint().apply {
         style = Paint.Style.STROKE
-        color = Color.GRAY
+        color = ContextCompat.getColor(context, R.color.thin_line_paint)
         strokeWidth = 2F
     }
 
     //Wrong Input Cell Color
     private val wrongInputColor = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.parseColor("#ffcccb")
+        color = ContextCompat.getColor(context, R.color.wrong_input_paint)
 
     }
 
     // Color of selected Cell
     private val selectedCellPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.parseColor("#ADD8E6")
+        color = ContextCompat.getColor(context, R.color.selected_cell_paint)
     }
 
     // Paint of selected Cell BOX and row and column
     private val conflictingCellPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = ContextCompat.getColor(getContext(), R.color.light_gray)
+        color = ContextCompat.getColor(getContext(), R.color.conflicting_cell_paint)
     }
 
     // Background Paint of Cell
     private val naturalCellPain = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.WHITE
+        color = ContextCompat.getColor(context, R.color.natural_cell_paint)
     }
 
     // TextPaint
     private val textPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.BLUE
+        color = ContextCompat.getColor(context, R.color.text_paint)
     }
 
     // Wrong Text Paint
     private val wrongTextPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.RED
+        color = ContextCompat.getColor(context, R.color.wrong_text_paint)
     }
 
     // Starting Cell Text Paint
     private val startingCellTextPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.BLACK
+        color = ContextCompat.getColor(context, R.color.starting_cell_text_paint)
     }
 
     // Pencil Notes Text Paint
     private val noteTextPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
-        color = Color.GRAY
-    }
-
-    // Starting Cell Paint
-    private val startingCellPaint = Paint().apply {
-        style = Paint.Style.FILL_AND_STROKE
-        color = Color.parseColor("#acacac")
+        color = ContextCompat.getColor(context, R.color.note_text_paint)
     }
 
     // Measure the view and its content to determine the measured width and the measured height
@@ -133,29 +126,26 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
 
 
     private fun fillCells(canvas: Canvas) {
-        if (selectedRow >= 0 && selectedCol >= 0) {
-            val cellValue = cells!![9 * selectedRow + selectedCol].value
-            if (cellValue != 0) {
-                if (cellValue != SudokuGame.sudokuSolution[9 * selectedRow + selectedCol]) {
-                    cells!![9 * selectedRow + selectedCol].hasWrongValue = true
-                    fillCell(canvas, selectedRow, selectedCol, wrongInputColor)
-                } else {
-                    cells!![9 * selectedRow + selectedCol].hasWrongValue = false
-                }
-            }
-        }
-
         cells?.forEach {
             val r = it.row
             val c = it.col
             fillCell(canvas, r, c, naturalCellPain)
             if (r == selectedRow && c == selectedCol) {
                 fillCell(canvas, r, c, selectedCellPaint)
-            } else if (r == selectedRow || c == selectedCol) {
-                fillCell(canvas, r, c, conflictingCellPaint)
-            } else if (r / sqrtSize == selectedRow / sqrtSize && c / sqrtSize == selectedCol / sqrtSize) {
-                fillCell(canvas, r, c, conflictingCellPaint)
+            } else if(context.getSharedPreferences(
+                    UserSettings().PREFERENCES,
+                    AppCompatActivity.MODE_PRIVATE
+                ).getBoolean(
+                    UserSettings().HIGHLIGHT_WRONG_INPUT,
+                    UserSettings().getCustomHighlightWrongInput()
+                )){
+                 if (r == selectedRow || c == selectedCol) {
+                    fillCell(canvas, r, c, conflictingCellPaint)
+                } else if (r / sqrtSize == selectedRow / sqrtSize && c / sqrtSize == selectedCol / sqrtSize) {
+                    fillCell(canvas, r, c, conflictingCellPaint)
+                }
             }
+
 
             if (context.getSharedPreferences(
                     UserSettings().PREFERENCES,
@@ -181,7 +171,6 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
                 val rowInCell = (note - 1) / sqrtSize
                 val colInCell = (note - 1) % sqrtSize
                 val valueString = note.toString()
-                Log.d("ValueString", valueString)
                 if (context.getSharedPreferences(
                         UserSettings().PREFERENCES,
                         AppCompatActivity.MODE_PRIVATE
@@ -287,15 +276,9 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
                 val textBounds = Rect()
                 paintToUse.getTextBounds(valueString, 0, valueString.length, textBounds)
                 val textWidth = paintToUse.measureText(valueString)
-                //val textWidth = 12F
                 val textHeight = textBounds.height()
-                //val textHeight = 12F
                 paintToUse.textSize =
-                    (cellSizePixels / updateFontSize(ThemeAndFont().getCurrentTextSize())) + SudokuGame.textSize.value!!
-
-//                if (SudokuGame.textSize.value != 0F){
-//                    paintToUse.textSize = 100F
-//                }
+                    (cellSizePixels / 1.7F)
 
                 canvas.drawText(
                     valueString, ((col * cellSizePixels) + cellSizePixels / 2 - textWidth / 2),
@@ -332,11 +315,8 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
     }
 
     private fun handleTouchEvent(x: Float, y: Float) {
-//        selectedRow= (y/cellSizePixels).toInt()
-//        selectedCol = (x/cellSizePixels).toInt()
         val possibleSelectedRow = (y / cellSizePixels).toInt()
         val possibleSelectedCol = (x / cellSizePixels).toInt()
-        //invalidate()
         listener?.onCellTouched(possibleSelectedRow, possibleSelectedCol)
         invalidate()
     }
@@ -354,10 +334,6 @@ class SudokuBoard(context: Context, attributeSet: AttributeSet) : View(context, 
 
     fun registerListener(listener: OnTouchListener) {
         this.listener = listener
-    }
-
-    private fun updateFontSize(fontSize: Float): Float {
-        return fontSize
     }
 
     interface OnTouchListener {

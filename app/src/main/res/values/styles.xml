@@ -9,6 +9,7 @@
         <!--<item name="android:layout_marginStart">20dp</item>-->
     </style>
 
+
     <!-- New Game Button Style STARTS -->
     <style name="GameStartButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
@@ -20,6 +21,13 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
     </style>
+
+    <style name="roundedImageView">
+        <item name="rippleColor">#F1F1F1</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item> <!-- Adjust the corner radius as needed -->
+    </style>
+
     <!-- New Game Button style ENDS -->
 
     <!-- New Game Dialog Fragment style STARTS -->
@@ -62,21 +70,24 @@
         <item name="android:backgroundTint">@color/blue</item>
     </style>
 
+<!--    Bottom Sheet Style   -->
     <style name="CustomBottomSheet" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_bottom_sheet_background</item>
     </style>
 
+
+<!--    Switch Style-->
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">@color/blue</item>
+<!--        <item name="trackColorInactive">@color/light_gray</item>-->
 
         <!-- inactive thumb color -->
         <item name="colorSwitchThumbNormal">@color/gray
         </item>
 
         <!-- inactive track color (30% transparency) -->
-        <item name="android:colorForeground">#42221f1f
-        </item>
+        <item name="android:colorForeground">@color/gray</item>
     </style>
 
 </resources>
