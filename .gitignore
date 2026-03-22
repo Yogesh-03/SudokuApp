@@ -1,0 +1,31 @@
+# Gradle
+.gradle/
+build/
+
+# Local config
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# Native build
+.externalNativeBuild/
+.cxx/
+
+# APK / AAB (IMPORTANT)
+*.apk
+*.aab
+
+# Logs
+*.log
+
+# OpenCV (safe ignore)
+opencv/build/
+opencv/.cxx/
+opencv/*.aar
+opencv/**/*.so
+opencv/**/*.a

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvForgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Forgot Password"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLoginEmail"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"
+        app:startIconDrawable="@drawable/baseline_email_24"
+        android:background="@drawable/edit_text_border"
+        android:gravity="center_vertical"
+        android:paddingVertical="0dp"
+        android:paddingStart="4dp"
+        android:textColorHint="@color/dark_gray"
+        app:boxBackgroundColor="@color/transparent"
+        app:boxStrokeColor="@color/blue"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:hintTextColor="@color/blue"
+        app:startIconTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPass"
+        tools:ignore="RtlSymmetry"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLoginEmailText"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/transparent"
+            android:hint="Email"
+            android:inputType="text"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="19sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRestPassword"
+        style="@style/GameStartButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Reset password"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etLoginEmail"
+        app:layout_constraintStart_toStartOf="@+id/etLoginEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
+
+    <ProgressBar
+        android:id="@+id/pbResetPass"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRestPassword"
+        app:layout_constraintEnd_toEndOf="@+id/btnRestPassword"
+        app:layout_constraintStart_toStartOf="@+id/btnRestPassword"
+        app:layout_constraintTop_toTopOf="@+id/btnRestPassword" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
